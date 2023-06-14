@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const fs = require('fs');
 
-// Rutas-------------------------
 let animeData = require('./anime.json');
 fs.readFile('./anime.json', 'utf8', (err, data) => {
     if (err) {
@@ -12,7 +11,7 @@ fs.readFile('./anime.json', 'utf8', (err, data) => {
         animeData = JSON.parse(data);
     }
 });
-
+// Rutas-------------------------
 router.get('/', (req, res) => {
     res.json(animeData);
 });
@@ -35,8 +34,6 @@ router.get('/nombre/:nombre', (req, res) => {
         return res.status(404).json({ msg: `No existe anime con el nombre ${req.params.nombre}` });
     }
 });
-
-
 
 router.put('/:id', (req, res) => {
     const animeId = req.params.id;
